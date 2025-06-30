@@ -5,6 +5,7 @@
 3. /profile/view
 4. /profile/edit
 5. /profile/password
+
 6. /request/send/:status/:userId
 7. /request/review/:status/:requestId
 8. /user/requests/received

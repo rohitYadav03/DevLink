@@ -61,7 +61,7 @@ if(!passwordCheck){
 
 const expiryDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-const loginToken = jwt.sign({id : user._id},process.env.JWT_SCWERT, {expiresIn : "7d"});
+const loginToken = jwt.sign({_id : user._id},process.env.JWT_SCWERT, {expiresIn : "7d"});
 
 
 res.cookie("loginToken", loginToken, {
