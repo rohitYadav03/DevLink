@@ -1,28 +1,125 @@
-# DevLink
+DevLink – Connect with Fellow Developers
 
-1. /signup
-2. /login
-3. /profile/view
-4. /profile/edit
-5. /profile/password
+DevLink is a connection-based social app designed to help developers discover, connect, and collaborate with other like-minded individuals in the tech community — similar to a Tinder-style experience for devs.
 
-6. /request/send/:status/:userId
-7. /request/review/:status/:requestId
-8. /requests/received
+🚀 Features
 
-9. /user/connections
-10. /user/feed
+🔐 Authentication (Signup/Login/Logout via JWT + Cookies)
 
-11. /logout
-12. /profile/visibility         ← enhancement
-13. /user/block/:userId         ← enhancement
-14. /user/blocked               ← enhancement
-15. /user/feed?page=...        ← enhancement (upgrade)
+👤 Profile Management (View, Edit, Update Password)
 
--------------------------------------------------------------------------------------
-#	API	Purpose	Should You Include?	Why
-10	/user/feed	 Show users not yet liked/passed	   ✅ Yes	Core Tinder-like swiping experience
-12	/profile/visibility	 Toggle visible/hidden status	✅ Yes	Polished enhancement for user control
-15	/user/feed?page=...	Pagination for swipe feed	    ✅ Optional (⭐ Bonus)	Only if you're aiming 
+🤝 Request System (Like, Pass, Accept, Reject)
 
-logic -> feed -> khudko , status
+📥 View Received Requests
+
+🧑‍🤝‍🧑 View All Connections
+
+🧾 Feed (Filtered to hide requests/connections/blocked)
+
+🚫 Block Users
+
+📜 View Blocked Users
+
+🔒 Control Profile Visibility (enhancement)
+
+📄 Paginated Feed (enhancement)
+
+🛠️ Tech Stack
+
+Backend: Node.js, Express.js
+
+Database: MongoDB, Mongoose
+
+Authentication: JWT (stored in cookies)
+
+Validation: Validator.js
+
+Environment: Postman (for testing)
+
+## 📁 API Endpoints
+
+### 🔑 Auth APIs
+| Method | Endpoint  | Description              |
+| :----: | --------- | ------------------------ |
+| POST   | `/signup` | Register a new user      |
+| POST   | `/login`  | Login & receive JWT      |
+| POST   | `/logout` | Logout and clear cookie  |
+
+### 👤 Profile APIs
+| Method | Endpoint              | Description                 |
+| :----: | --------------------- | --------------------------- |
+| GET    | `/profile/view`       | View logged‑in user data    |
+| PATCH  | `/profile/edit`       | Edit user details           |
+| PATCH  | `/profile/password`   | Update password             |
+
+### 🤝 Request APIs
+| Method | Endpoint                                         | Description                     |
+| :----: | ------------------------------------------------ | ------------------------------- |
+| POST   | `/request/send/:status/:userId`                  | Send a request (`like` / `pass`)|
+| PATCH  | `/request/review/:status/:requestId`             | Accept or reject a request      |
+| GET    | `/requests/received`                             | View received “like” requests   |
+
+### 🧑‍🤝‍🧑 Connection APIs
+| Method | Endpoint               | Description                     |
+| :----: | ---------------------- | ------------------------------- |
+| GET    | `/user/connections`    | View all accepted connections   |
+
+### 🧭 Feed APIs
+| Method | Endpoint      | Description                                                      |
+| :----: | ------------- | ---------------------------------------------------------------- |
+| GET    | `/user/feed`  | Show discoverable users (excludes self, liked/passed, matched, blocked) |
+
+### 🚫 Block APIs
+| Method | Endpoint                 | Description           |
+| :----: | ------------------------ | --------------------- |
+| PATCH  | `/user/block/:userId`    | Block a user          |
+| GET    | `/user/blocked`          | View blocked‑users list|
+
+---
+
+## 🔐 Authentication Strategy
+
+- JWT tokens are stored in **HTTP‑only cookies**.  
+- All protected routes use a custom `auth` middleware to verify the token and attach `req.user`.
+
+
+
+📄 Project Structure
+
+/models
+  - userSchema.js
+  - connectionSchema.js
+
+/routes
+  - authRouter.js
+  - userRouter.js
+  - requestRouter.js
+
+/middleware
+  - auth.js
+
+index.js
+
+.env
+
+
+README.md
+
+🧪 Testing
+
+All routes tested using Postman.
+
+Error handling and duplicate request prevention included.
+
+Schema validations via Mongoose + Validator.js.
+
+🌱 Future Enhancements (optional)
+🧭 In-app messaging
+
+🧠 AI-based recommendations
+
+🌐 OAuth login (Google/GitHub)
+
+🧑‍💻 Author
+Made with ❤️ by Rohit
+
