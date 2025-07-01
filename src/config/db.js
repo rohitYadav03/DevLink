@@ -12,8 +12,3 @@ const connectToDB = async () => {
 };
 
 module.exports = { connectToDB };
-
-
-
-// Rohit@1234
-// mongodb+srv://rohit:Rohit@1234@devlink.ijf5ebz.mongodb.net/
