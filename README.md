@@ -19,12 +19,10 @@
 14. /user/blocked               ← enhancement
 15. /user/feed?page=...        ← enhancement (upgrade)
 
+-------------------------------------------------------------------------------------
+#	API	Purpose	Should You Include?	Why
+10	/user/feed	 Show users not yet liked/passed	   ✅ Yes	Core Tinder-like swiping experience
+12	/profile/visibility	 Toggle visible/hidden status	✅ Yes	Polished enhancement for user control
+15	/user/feed?page=...	Pagination for swipe feed	    ✅ Optional (⭐ Bonus)	Only if you're aiming 
 
------------------------------------------------------------
-1. Send Request
-POST /request/send/:userId
-Body: { "status": "pending" }
-2. Review Request
-
-PATCH /request/review/:requestId
-Body: { "status": "accepted" } // or "rejected"
+logic -> feed -> khudko , status

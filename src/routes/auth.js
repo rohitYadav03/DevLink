@@ -2,6 +2,7 @@ const express = require("express");
 const {UserModel} = require("../models/userSchema.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { auth } = require("../middleware/auth.js");
 require("dotenv").config();
 
 const authRouter = express.Router();
@@ -77,6 +78,15 @@ res.json({message : "login successfully"})
   } catch (error) {
     res.json({message : error.message})
   }
+})
+
+authRouter.post("/logout", auth,(req,res) => {
+       res.clearCookie("loginToken",{
+          httpOnly : true,
+  secure : false , // true in production -> it means HTTPS
+  sameSite: "strict"
+       });
+       res.send("logout done")
 })
 
 

@@ -66,7 +66,11 @@ const userSchema = new mongoose.Schema({
                 throw new Error("Enter a valid image url");
             }
         }
-    }
+    },
+    blockedUsers :[{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "user"
+    }]
 }, {timestamps : true})
 
 const UserModel = mongoose.model("user", userSchema);

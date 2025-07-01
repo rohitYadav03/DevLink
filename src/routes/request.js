@@ -70,7 +70,7 @@ res.send("request send")
 
 requestRouter.get("/received", auth,async(req,res) => {
     const loggedInUser = req.user;    
-const userList = await ConnectionModel.find( {receiver: loggedInUser._id, status: "like"}).populate("sender", "-password -emailId -__v -createdAt -updatedAt").select({receiver : 0, createdAt: 0,updatedAt : 0,__v:0 })
+const userList = await ConnectionModel.find( {receiver: loggedInUser._id, status: "like"}).populate("sender", "-password -emailId -__v -createdAt -updatedAt -blockedUsers").select({receiver : 0, createdAt: 0,updatedAt : 0,__v:0 })
 
 res.send(userList)
 })
